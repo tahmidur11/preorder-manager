@@ -146,7 +146,7 @@ Route::get('/api/products', function (Request $request) {
     $session = $request->get('shopifySession'); // Provided by the shopify.auth middleware, guaranteed to be active
 
     $client = new Rest($session->getShop(), $session->getAccessToken());
-    $result = $client->get('products');
+    $result = $client->get('products',array('limit'=>'20'));
 
     return response($result->getDecodedBody());
 })->middleware('shopify.auth');

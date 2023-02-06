@@ -120,16 +120,16 @@ import { useCallback, useState } from 'react';
 //     },[])
 // console.log(allProduct,'allproduct')
 
-// const {
-//     data
-//   } = useAppQuery({
-//     url: "/api/products",
-//     reactQueryOptions: {
-//       onSuccess: (response) => {
-//         console.log(response,'response');
-//       },
-//     },
-//   });
+const {
+    data
+  } = useAppQuery({
+    url: "/api/products",
+    reactQueryOptions: {
+      onSuccess: (response) => {
+        console.log(response,'response');
+      },
+    },
+  });
     return (
       <Card>
         <ResourceList
