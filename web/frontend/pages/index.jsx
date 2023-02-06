@@ -1,13 +1,23 @@
-import { useNavigate, TitleBar, Loading } from "@shopify/app-bridge-react";
+import { Loading, useNavigate } from "@shopify/app-bridge-react";
 import {
   Card,
   EmptyState,
   Layout,
   Page,
-  SkeletonBodyText,
+  SkeletonBodyText
 } from "@shopify/polaris";
+import { useState } from "react";
 
 export default function HomePage() {
+
+  const [prod, setProd] = useState({});
+  console.log('my shopify apppp',prod)
+  // useEffect(()=>{
+  //   fetch('https://jsonplaceholder.typicode.com/users')
+  //   .then( res => res.json())
+  //   .then( data => console.log('data',data));
+  // },[])
+  
   /*
     Add an App Bridge useNavigate hook to set up the navigate function.
     This function modifies the top-level browser URL so that you can
@@ -56,13 +66,13 @@ export default function HomePage() {
   */
   return (
     <Page>
-      <TitleBar
+      {/* <TitleBar
         title="All products"
         primaryAction={{
           content: "Create Button",
           onAction: () => navigate("/products/new"),
         }}
-      />
+      /> */}
       <Layout>
         <Layout.Section>
           {loadingMarkup}
