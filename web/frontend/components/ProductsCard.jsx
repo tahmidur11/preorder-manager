@@ -1,12 +1,9 @@
-import { useState } from "react";
-import {
-  Card,
-  Heading,
-  TextContainer,
-  DisplayText,
-  TextStyle,
-} from "@shopify/polaris";
 import { Toast } from "@shopify/app-bridge-react";
+import {
+  Card, DisplayText, Heading,
+  TextContainer, TextStyle
+} from "@shopify/polaris";
+import { useState } from "react";
 import { useAppQuery, useAuthenticatedFetch } from "../hooks";
 
 export function ProductsCard() {
@@ -71,6 +68,7 @@ export function ProductsCard() {
             <DisplayText size="medium">
               <TextStyle variation="strong">
                 {isLoadingCount ? "-" : data.count}
+                {console.log('pdData', data)}
               </TextStyle>
             </DisplayText>
           </Heading>
