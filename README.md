@@ -291,3 +291,18 @@ pnpm dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
 -   [App authentication](https://shopify.dev/apps/auth)
 -   [Shopify CLI](https://shopify.dev/apps/tools/cli)
 -   [Shopify API Library documentation](https://github.com/Shopify/shopify-api-php/tree/main/docs)
+
+Git Comment *********
+
+git add .
+git commit -m 'commit name'
+git push 
+
+git branch ex: main, shakil
+git status
+git checkout branchName ex: git checkout main (branch Switcher)
+git pull origin main
+
+
+
+

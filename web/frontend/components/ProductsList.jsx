@@ -1,14 +1,18 @@
 import {
-    Avatar, Button,
-    Card, Filters, ResourceItem, ResourceList, TextField
+  Button,
+  Card, Filters, List, ResourceItem, ResourceList, TextField, Thumbnail
 } from '@shopify/polaris';
 import { useCallback, useState } from 'react';
+import { useAppQuery } from "../hooks";
 
   function ProductsList() {
     const [selectedItems, setSelectedItems] = useState([]);
     const [sortValue, setSortValue] = useState('DATE_MODIFIED_DESC');
     const [taggedWith, setTaggedWith] = useState('VIP');
     const [queryValue, setQueryValue] = useState(null);
+
+    const [isLoading, setIsLoading] = useState(true);
+
   
     const handleTaggedWithChange = useCallback(
       (value) => setTaggedWith(value),
@@ -119,63 +123,136 @@ import { useCallback, useState } from 'react';
 //         .then(data => setAllProduct(data))
 //     },[])
 // console.log(allProduct,'allproduct')
+const { data, isError, error } = useAppQuery({
+    url: "/api/products",
+    reactQueryOptions: {
+      onSuccess: (response) => {
+        setIsLoading(false);
+      }
+    },
+  });
+  // console.log("data",data)
+// const allProduct = data.products;
+// console.log(isLoading, 'isLoading', data.products)
+// const renderItem3 = isLoading ? <Spinner accessibilityLabel="Spinner example" size="large" /> : data.products.map(({id, title, image: {src}} )=>{
+//     console.log(id, 'allproduct', src);
+    
+//     <ResourceItem
+//           id={id}
+//           url={src}
+//         //   media={media}
+//           accessibilityLabel={`View details for ${name}`}
+//         //   shortcutActions={shortcutActions}
+//           persistActions
+//         >
+//           <p variant="bodyMd" fontWeight="bold" as="h3">
+//             {title}
+//           </p>
+//           {/* <div>{location}</div> */}
+//         </ResourceItem>
+//  })
 
-// const {
-//     data
-//   } = useAppQuery({
-//     url: "/api/products",
-//     reactQueryOptions: {
-//       onSuccess: (response) => {
-//         console.log(response,'response');
-//       },
-//     },
-//   });
+
+const openPdPage = (id,title,src,body_html) =>{
+    console.log(id,title,src,body_html, 'pd id');
+    const pdDetails = <Card
+                    title="{title}"
+                    secondaryFooterActions={[{content: 'Cancel shipment', destructive: true}]}
+                    primaryFooterAction={{content: 'Add tracking number'}}
+                    >
+                    <Card.Section title="Items">
+                    <List>
+                        <List.Item>1 × Oasis Glass, 4-Pack</List.Item>
+                    <List.Item content={body_html}></List.Item>
+                    </List>
+                    </Card.Section>
+                    </Card>
+
+}
+
+
+function renderItem(item) {
+  // console.log(item)
+  const {id, url, title, location,created_at, image: {src}} = item;
+  const media = <Thumbnail
+  source={src}
+  alt={title}
+/>;
+const num = 123
+  return (
+    <ResourceItem
+      id={id}
+      url={`/pdDetailsPage?id=${num}`}
+      media={media}
+      accessibilityLabel={`View details for ${name}`}
+      verticalAlignment={'center'}
+    >
+      <p variant="bodyMd" fontWeight="bold" as="h3">
+        {title}
+      </p>
+      <p variant="bodyMd" fontWeight="bold" as="h3">
+        Status
+      </p>
+    </ResourceItem>
+  );  
+
+}
+
+
+
     return (
       <Card>
         <ResourceList
-          resourceName={resourceName}
-          items={items}
-          renderItem={renderItem}
-          selectedItems={selectedItems}
-          onSelectionChange={setSelectedItems}
-          promotedBulkActions={promotedBulkActions}
-          bulkActions={bulkActions}
-          sortValue={sortValue}
-          sortOptions={[
-            {label: 'Newest update', value: 'DATE_MODIFIED_DESC'},
-            {label: 'Oldest update', value: 'DATE_MODIFIED_ASC'},
-          ]}
-          onSortChange={(selected) => {
-            setSortValue(selected);
-            console.log(`Sort option changed to ${selected}.`);
-          }}
-          filterControl={filterControl}
-        />
+                    resourceName={resourceName}
+                    items={data?.products||[]}
+                    renderItem={renderItem}
+                    //renderItem={(f) => f}
+                    loading={isLoading}
+                    selectedItems={selectedItems}
+                    onSelectionChange={setSelectedItems}
+                    promotedBulkActions={promotedBulkActions}
+                    bulkActions={bulkActions}
+                    sortValue={sortValue}
+                    headings={[
+                      {title: 'Name'},
+                      {title: 'Location'},
+                      {title: 'Order count'},
+                      {title: 'Amount spent'},
+                    ]}
+                    showHeader={true}
+                    />
+                    
       </Card>
     );
-  
-    function renderItem(item) {
-      const {id, url, name, location, latestOrderUrl} = item;
-      const media = <Avatar customer size="medium" name={name} />;
-      const shortcutActions = latestOrderUrl
-        ? [{content: 'View latest order', url: latestOrderUrl}]
-        : null;
-      return (
-        <ResourceItem
-          id={id}
-          url={url}
-          media={media}
-          accessibilityLabel={`View details for ${name}`}
-          shortcutActions={shortcutActions}
-          persistActions
-        >
-          <p variant="bodyMd" fontWeight="bold" as="h3">
-            {name}
-          </p>
-          <div>{location}</div>
-        </ResourceItem>
-      );
-    }
+    
+ 
+    
+
+    // function renderItem(item) {
+
+
+    //   const {id, url, name, location, latestOrderUrl} = item;
+      
+    //   const media = <Avatar customer size="medium" name={name} />;
+    //   const shortcutActions = latestOrderUrl
+    //     ? [{content: 'View latest order', url: latestOrderUrl}]
+    //     : null;
+    //   return (
+    //     <ResourceItem
+    //       id={id}
+    //       url={url}
+    //       media={media}
+    //       accessibilityLabel={`View details for ${name}`}
+    //       shortcutActions={shortcutActions}
+    //       persistActions
+    //     >
+    //       <p variant="bodyMd" fontWeight="bold" as="h3">
+    //         {name}
+    //       </p>
+    //       <div>{location}</div>
+    //     </ResourceItem>
+    //   );
+    // }
   
     function disambiguateLabel(key, value) {
       switch (key) {

@@ -32,7 +32,7 @@ export function ProductsTable() {
     const {selectedResources, allResourcesSelected, handleSelectionChange} =
       useIndexResourceState(customers);
     const [taggedWith, setTaggedWith] = useState('VIP');
-    const [queryValue, setQueryValue] = useState(null);
+    const [queryValue, setQueryValue] = useState('');
     const [sortValue, setSortValue] = useState('today');
   
     const handleTaggedWithChange = useCallback(
@@ -101,9 +101,10 @@ export function ProductsTable() {
       {label: 'Last 7 days', value: 'lastWeek'},
     ];
   
-    const handleAction = useCallback((id) =>{
-      console.log(id, 'action click');
+    const handleAction = useCallback((e,id) =>{
+      console.log(id);
     },[])
+    
     const rowMarkup = customers.map(
       ({id, name, location, orders, amountSpent}, index) => (
         <IndexTable.Row
@@ -111,7 +112,7 @@ export function ProductsTable() {
           key={id}
           selected={selectedResources.includes(id)}
           position={index}
-          // onClick={handleAction}
+          url={'/dashboard'}
         >
           <IndexTable.Cell>
             <Stack alignment="center">
@@ -133,6 +134,11 @@ export function ProductsTable() {
       ),
     );
   
+    const handleSelectionChangeCustom = (selectionType, isSelecting, selection) => {
+      console.log(selectionType, isSelecting, selection)
+      console.log(handleSelectionChange)
+      return handleSelectionChange(selectionType, isSelecting, selection)
+    }
     return (
       <Card>
         <div style={{padding: '16px', display: 'flex'}}>
@@ -162,7 +168,7 @@ export function ProductsTable() {
           selectedItemsCount={
             allResourcesSelected ? 'All' : selectedResources.length
           }
-          onSelectionChange={handleSelectionChange}
+          onSelectionChange={handleSelectionChangeCustom}
           hasMoreItems
           bulkActions={bulkActions}
           // promotedBulkActions={promotedBulkActions}

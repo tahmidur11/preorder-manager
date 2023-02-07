@@ -14,10 +14,12 @@ import { Route, Routes as ReactRouterRoutes } from "react-router-dom";
  *
  * @return {Routes} `<Routes/>` from React Router, with a `<Route/>` for each file in `pages`
  */
-export default function Routes({ pages }) {
+export default function Routes({ pages, pdData }) {
   const routes = useRoutes(pages);
+  console.log(routes, 'routes');
   const routeComponents = routes.map(({ path, component: Component }) => (
-    <Route key={path} path={path}  element={<Component />} />
+    <Route key={path} path={path} element={<Component menu={pdData}/>} />
+    
   ));
 
   const NotFound = routes.find(({ path }) => path === "/notFound").component;

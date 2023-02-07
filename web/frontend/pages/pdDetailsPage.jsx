@@ -1,11 +1,20 @@
 import { Card, Page } from '@shopify/polaris';
 import React from 'react';
-import ProductsList from '../components/ProductsList';
+import { useSearchParams } from 'react-router-dom';
 
-export default function Products(menu) {
-  console.log(menu, 'menu')
+export default function PdDetailsPage() {
+  
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    let params = serializeFormQuery(event.target);
+
+    setSearchParams(params);
+    searchParams.get("id");
+  }
+  console.log(searchParams.get("id"), 'searchParams.get("id");')
   return (
-    
     <Page
     // secondaryActions={props}
     // primaryAction={
@@ -36,7 +45,7 @@ export default function Products(menu) {
     //     </Button>
     //     </Stack>
     //   }
-      // breadcrumbs={[{content: 'Settings', url: '/settings'}]}
+      breadcrumbs={[{content: 'Settings', url: '/products'}]}
       // title="Products"
       
     >
@@ -52,8 +61,7 @@ export default function Products(menu) {
       fulfilling orders
     </Link> */}
     {/* <ProductsTable/> */}
-      <ProductsList/>
-      <Card title="Credit card" sectioned>
+      <Card title="Product details page" sectioned>
         {/* <ProductsCard/> */}
         
       </Card>
