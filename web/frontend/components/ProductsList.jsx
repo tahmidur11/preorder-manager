@@ -262,7 +262,7 @@ const num = 123
           return value;
       }
     }
-  
+    // test comment
     function isEmpty(value) {
       if (Array.isArray(value)) {
         return value.length === 0;
