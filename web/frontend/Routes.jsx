@@ -18,14 +18,15 @@ export default function Routes({ pages, pdData }) {
   const routes = useRoutes(pages);
   console.log(routes, 'routes');
   const routeComponents = routes.map(({ path, component: Component }) => (
+
     <Route key={path} path={path} element={<Component menu={pdData}/>} />
-    
+  
   ));
 
   const NotFound = routes.find(({ path }) => path === "/notFound").component;
 
   return (
-    <ReactRouterRoutes >
+    <ReactRouterRoutes>
       {routeComponents}
       <Route path="*" element={<NotFound />} />
     </ReactRouterRoutes>

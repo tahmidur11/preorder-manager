@@ -2,8 +2,7 @@ import { Card, Page } from '@shopify/polaris';
 import React from 'react';
 import ProductsList from '../components/ProductsList';
 
-export default function Products(menu) {
-  console.log(menu, 'menu')
+export default function Products() {
   return (
     
     <Page

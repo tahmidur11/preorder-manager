@@ -61,6 +61,7 @@ export default function PdDetailsPage() {
       fulfilling orders
     </Link> */}
     {/* <ProductsTable/> */}
+    {/* <ProductsList/> */}
       <Card title="Product details page" sectioned>
         {/* <ProductsCard/> */}
         

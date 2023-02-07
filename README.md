@@ -1,4 +1,4 @@
-# Shopify App Template - PHP collaborator shakil
+# Shopify App Template - PHP
 
 This is a template for building a [Shopify app](https://shopify.dev/apps/getting-started) using PHP and React. It contains the basics for building a Shopify app.
 
@@ -265,7 +265,9 @@ To do that, you can [install the `cloudflared` CLI tool](https://developers.clou
 # Note that you can also use a different port
 cloudflared tunnel --url http://localhost:3000
 ```
+
 In the output produced by `cloudflared tunnel` command, you will notice a https URL where the domain ends with `trycloudflare.com`. This is your tunnel URL. You need to copy this URL as you will need it in the next step.
+
 ```shell
 2022-11-11T19:57:55Z INF Requesting new quick Tunnel on trycloudflare.com...
 2022-11-11T19:57:58Z INF +--------------------------------------------------------------------------------------------+
@@ -274,7 +276,7 @@ In the output produced by `cloudflared tunnel` command, you will notice a https 
 2022-11-11T19:57:58Z INF +--------------------------------------------------------------------------------------------+
 ```
 
-In a different terminal window, navigate to your app's root and run one of the following commands (replacing `randomly-generated-hostname` with the Cloudflare tunnel URL copied from the output of `cloudflared` command): 
+In a different terminal window, navigate to your app's root and run one of the following commands (replacing `randomly-generated-hostname` with the Cloudflare tunnel URL copied from the output of `cloudflared` command):
 
 ```shell
 # Using yarn
@@ -292,17 +294,15 @@ pnpm dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
 -   [Shopify CLI](https://shopify.dev/apps/tools/cli)
 -   [Shopify API Library documentation](https://github.com/Shopify/shopify-api-php/tree/main/docs)
 
-Git Comment *********
+Git Comment ****\*****
 
 git add .
 git commit -m 'commit name'
-git push 
+git push
 
 git branch ex: main, shakil
 git status
 git checkout branchName ex: git checkout main (branch Switcher)
 git pull origin main
 
-
-
-
+git pull origin main // Automatic merge failed; fix conflicts and then commit the result.
