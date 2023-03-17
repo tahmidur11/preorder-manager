@@ -294,7 +294,7 @@ pnpm dev --tunnel-url https://randomly-generated-hostname.trycloudflare.com:3000
 -   [Shopify CLI](https://shopify.dev/apps/tools/cli)
 -   [Shopify API Library documentation](https://github.com/Shopify/shopify-api-php/tree/main/docs)
 
-Git Comment ****\*****
+Git Comment \***\*\*\*\***
 
 git add .
 git commit -m 'commit name'
