@@ -3,6 +3,7 @@ import {
     Card, Filters, ResourceItem, ResourceList, TextField
 } from '@shopify/polaris';
 import { useCallback, useState } from 'react';
+import { useAppQuery, useAuthenticatedFetch } from "../hooks";
 
   function ProductsList() {
     const [selectedItems, setSelectedItems] = useState([]);
@@ -38,6 +39,7 @@ import { useCallback, useState } from 'react';
         location: 'Decatur, USA',
         latestOrderUrl: 'orders/1456',
       },
+      
       {
         id: 212,
         url: 'customers/256',
@@ -110,20 +112,11 @@ import { useCallback, useState } from 'react';
         </div>
       </Filters>
     );
-  
-//     const [allProduct, setAllProduct] = useState({})
-
-//     useEffect(()=>{
-//         fetch('https://jsonplaceholder.typicode.com/photos')
-//         .then(res=>res.json())
-//         .then(data => setAllProduct(data))
-//     },[])
-// console.log(allProduct,'allproduct')
 
 const {
     data
   } = useAppQuery({
-    url: "/api/products",
+    url: "/api/products/8101269831976",
     reactQueryOptions: {
       onSuccess: (response) => {
         console.log(response,'response');

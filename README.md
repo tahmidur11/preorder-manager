@@ -1,4 +1,4 @@
-# Shopify App Template - PHP collaborator shakil
+# Shopify App Template - PHP
 
 This is a template for building a [Shopify app](https://shopify.dev/apps/getting-started) using PHP and React. It contains the basics for building a Shopify app.
 

@@ -13,6 +13,7 @@ use Shopify\Auth\OAuth;
 use Shopify\Auth\Session as AuthSession;
 use Shopify\Clients\HttpHeaders;
 use Shopify\Clients\Rest;
+use Shopify\Clients\PageInfo;
 use Shopify\Context;
 use Shopify\Exception\InvalidWebhookException;
 use Shopify\Utils;
@@ -141,12 +142,19 @@ Route::post('/api/webhooks', function (Request $request) {
     }
 });
 
-Route::get('/api/products', function (Request $request) {
-    /** @var AuthSession */
-    $session = $request->get('shopifySession'); // Provided by the shopify.auth middleware, guaranteed to be active
+// Route::get('/api/products', function (Request $request) {
+//     /** @var AuthSession */
+//     $session = $request->get('shopifySession'); // Provided by the shopify.auth middleware, guaranteed to be active ->api()->rest('GET', '/admin/products.json')
+//     //print_r($session);
+//     $client = new Rest($session->getShop(), $session->getAccessToken()); 
+//     $result = $client->get(path: "products",query: ['limit' => '250']);
 
-    $client = new Rest($session->getShop(), $session->getAccessToken());
-    $result = $client->get('products',array('limit'=>'20'));
+//     //return response($result->getHeaders());
+//     //return $result['page_info'];
+    
+//         //return $pageInfo;
+//     return response($result->getDecodedBody());
+// })->middleware('shopify.auth');
+Route::get('/api/products', 'ProductController@productList');
 
-    return response($result->getDecodedBody());
-})->middleware('shopify.auth');
+Route::get('/api/products/{product_id}', 'ProductController@getSingleProduct');
