@@ -1,71 +1,45 @@
-import { Card, Page } from '@shopify/polaris';
-import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Card, Page, PageActions } from "@shopify/polaris";
+import React from "react";
+import { useSearchParams } from "react-router-dom";
+import "../assets/css_file/pdDetailsPage.css";
+import PreOrderSettingCard from "../components/PreOrderSettings/PreOrderSettingCard";
 
 export default function PdDetailsPage() {
-  
-  let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams, setSearchParams] = useSearchParams();
+    console.log(searchParams.get("id"), 'searchParams.get("id");');
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    let params = serializeFormQuery(event.target);
+    return (
+        <Page breadcrumbs={[{ content: "Settings", url: "/products" }]}>
+            <Card title="Product details page" sectioned>
+                <div className="product-banner">
+                    <div className="bnr-img">
+                        <img
+                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                            alt=""
+                            srcSet=""
+                            width="100%"
+                        />
+                    </div>
+                    <div className="bnr-title">
+                        <h1>
+                            2-IN-1 Extending Computer Desk Workstation Table
+                            with Storage Shelf & Rolling Castors, Natural
+                        </h1>
+                    </div>
+                </div>
+            </Card>
+            <PreOrderSettingCard />
 
-    setSearchParams(params);
-    searchParams.get("id");
-  }
-  console.log(searchParams.get("id"), 'searchParams.get("id");')
-  return (
-    <Page
-    // secondaryActions={props}
-    // primaryAction={
-    //     <Stack>
-    //     <Button
-    //       primary
-    //       url="/dashboard"
-    //     >
-    //       Dashboard
-    //     </Button>
-    //     <Button
-    //       primary
-    //       url="/settings"
-    //     >
-    //       Settings
-    //     </Button>
-    //     <Button
-    //       primary
-    //       url="/products"
-    //     >
-    //       Products
-    //     </Button>
-    //     <Button
-    //       primary
-    //       url="/badge"
-    //     >
-    //       Badge
-    //     </Button>
-    //     </Stack>
-    //   }
-      breadcrumbs={[{content: 'Settings', url: '/products'}]}
-      // title="Products"
-      
-    >
-        {/* <TitleBar
-        title="Settings"
-        primaryAction={{
-          content: "Primary action",
-          onAction: () => console.log("Primary action from general page"),
-        }}
-        
-      /> */}
-      {/* <Link monochrome url="/pagename">
-      fulfilling orders
-    </Link> */}
-    {/* <ProductsTable/> */}
-    {/* <ProductsList/> */}
-      <Card title="Product details page" sectioned>
-        {/* <ProductsCard/> */}
-        
-      </Card>
-    </Page>
-  );
+            <PageActions
+                primaryAction={{
+                    content: "Save",
+                }}
+                secondaryActions={[
+                    {
+                        content: "Cancel",
+                    },
+                ]}
+            />
+        </Page>
+    );
 }
