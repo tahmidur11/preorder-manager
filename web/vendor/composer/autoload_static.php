@@ -324,8 +324,8 @@ class ComposerStaticInit69fa8c5a9432899d6a172ee557da040f
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -418,8 +418,8 @@ class ComposerStaticInit69fa8c5a9432899d6a172ee557da040f
         ),
         'Fruitcake\\Cors\\' => 
         array (
-            0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
-            1 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+            0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+            1 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
         ),
         'Firebase\\JWT\\' => 
         array (
@@ -531,6 +531,7 @@ class ComposerStaticInit69fa8c5a9432899d6a172ee557da040f
         'App\\Exceptions\\ShopifyBillingException' => __DIR__ . '/../..' . '/app/Exceptions/ShopifyBillingException.php',
         'App\\Exceptions\\ShopifyProductCreatorException' => __DIR__ . '/../..' . '/app/Exceptions/ShopifyProductCreatorException.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CspHeader' => __DIR__ . '/../..' . '/app/Http/Middleware/CspHeader.php',
@@ -554,6 +555,7 @@ class ComposerStaticInit69fa8c5a9432899d6a172ee557da040f
         'App\\Lib\\ProductCreator' => __DIR__ . '/../..' . '/app/Lib/ProductCreator.php',
         'App\\Lib\\TopLevelRedirection' => __DIR__ . '/../..' . '/app/Lib/TopLevelRedirection.php',
         'App\\Models\\Session' => __DIR__ . '/../..' . '/app/Models/Session.php',
+        'App\\Models\\preorderTable' => __DIR__ . '/../..' . '/app/Models/preorderTable.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
